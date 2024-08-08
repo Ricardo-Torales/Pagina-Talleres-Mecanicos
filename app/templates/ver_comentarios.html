@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block title %}Comentarios{% endblock %}
+
+{% block content %}
+<body>
+
+   
+    
+    <h1 class="titulo_comentarios">Comentarios</h1>
+
+    <a href="{{ url_for('index') }}"><button class="boton_volver">Volver a Inicio</button></a>
+    <h2 class="subtitulo_comentarios">Agregar Comentario</h2>
+    
+    <form action="{{ url_for('agregar_comentario') }}" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" required>
+        
+        <label for="vehiculo">Vehículo:</label>
+        <input type="text" name="vehiculo" required>
+        
+        <label for="mensaje">Mensaje:</label>
+        <textarea name="mensaje" required></textarea>
+    
+        <input type="submit" value="Agregar Comentario">
+    </form>
+
+
+    <section class="contenedor_comentarios">
+    <h2>Comentarios</h2>
+    
+    {% for comentario in comentarios %}
+        <div>
+            <p><strong>Nombre:</strong> {{ comentario.nombre }}</p>
+            <p><strong>Vehículo:</strong> {{ comentario.vehiculo }}</p>
+            <p><strong>Mensaje:</strong> {{ comentario.mensaje }}</p>
+            <p><strong>Fecha:</strong> {{ comentario.fecha }}</p>
+        </div>
+        <hr>
+    {% endfor %}
+
+    </section>
+    
+    
+</body>
+{% endblock %}

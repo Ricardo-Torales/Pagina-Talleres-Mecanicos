@@ -1,0 +1,189 @@
+{% extends 'layout.html' %}
+
+{% block title %}TodoAuto${% endblock %}
+
+{% block content %}
+<body>
+    <header>
+        <section class="hero">
+            <p class="p_hero"><a href="{{ url_for('index') }}">+1234567890</a></p>
+            <p class="p_hero"><a href="{{ url_for('index') }}">todoautos@gmail.com</a></p>
+            <p class="p_hero"><a href="{{ url_for('index') }}"><i class="fab fa-facebook" style="color: #1877f2;"></i></a><a href="{{ url_for('index') }}"><i class="fab fa-instagram" style="color: #e4405f;"></i></i></a><a href="{{ url_for('index') }}"><i class="fab fa-tiktok" style="color: #69c9d0;"></i></a><a href="{{ url_for('index') }}"><i class="fas fa-times" style="color: #000;"></i></a></p>
+        </section>
+        <section class="contenedor_nav">
+            <div class="logo">
+                <p>TODOAUTO$</p>
+            </div>
+            <div class="menu-container">
+                <div class="menu-toggle" id="mobile-menu">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <nav class="menu">
+                  <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li class="submenu">
+                      <a href="#">Marcas</a>
+                      <ul class="lista_principal">
+                        <li><a href="#">Renault</a></li>
+                        <li><a href="#">Volkswagen</a></li>
+                        <li><a href="#">Ford</a></li>
+                        <li><a href="#">Fiat</a></li>
+                        <li><a href="#">Chevrolet</a></li>
+                        <li><a href="#">Peugeot</a></li>
+                        <li><a href="#">Toyota</a></li>
+                      </ul>
+                    </li>
+                    <li class="submenu">
+                      <a href="#">Talleres</a>
+                      <ul>
+                        <li><a href="#">CABA</a></li>
+                        <li><a href="#">Zona Norte</a></li>
+                        <li><a href="#">Zona Oeste</a></li>
+                        <li><a href="#">Zona Sur</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="#">Contacto</a></li>
+                  </ul>
+                </nav>
+              </div>
+              
+        </section>
+    </header>
+
+<section class"contenedor_principal">
+    <div class="contenedor_img_principal">
+        <div class="imagen_principal">
+            <img src="{{ url_for('static', filename='img/img1.jpg') }}" class="d-block w-100" alt="Imagen 1">
+        </div>
+    </div/>
+  
+    <div class="slogan_principal">
+        <h1>TODOAUTO$</h1>
+        <p>Lo que necesitas saber de tu vehiculo, en un solo lugar</p>
+    </div>
+</section>
+
+   
+<section class="contenedor_logos">
+    <h2>Seleccione la marca de su vehiculo:</h2>
+    <div id="follower"></div>
+    <br>
+    <br>
+    <div class="logos-container">
+        <a href="{{ url_for('renault') }}"><img src="{{ url_for('static', filename='img/logos/renault.jpg') }}" alt="Renault"></a>
+        <a href="{{ url_for('volkswagen') }}"><img src="{{ url_for('static', filename='img/logos/volkswagen.jpg') }}" alt="Volkswagen"></a>
+        <a href="{{ url_for('chevrolet') }}"><img src="{{ url_for('static', filename='img/logos/chevrolet.jpg') }}" alt="Chevrolet"></a>
+        <a href="{{ url_for('fiat') }}"><img src="{{ url_for('static', filename='img/logos/fiat.jpg') }}" class="d-block w-100" alt="Imagen 1"></a>
+        <a href="{{ url_for('ford') }}"><img src="{{ url_for('static', filename='img/logos/ford.jpg') }}" class="d-block w-100" alt="Imagen 1"></a>
+        <a href="{{ url_for('toyota') }}"><img src="{{ url_for('static', filename='img/logos/toyota.jpg') }}" class="d-block w-100" alt="Imagen 1"></a>
+        <a href="{{ url_for('audi') }}"><img src="{{ url_for('static', filename='img/logos/audi.jpg') }}" class="d-block w-100" alt="Imagen 1"></a>
+        <a href="{{ url_for('bmw') }}"><img src="{{ url_for('static', filename='img/logos/bmw.jpg') }}" class="d-block w-100" alt="Imagen 1"></a>
+        <a href="{{ url_for('peugeot') }}"><img src="{{ url_for('static', filename='img/logos/peugeot.jpg') }}" class="d-block w-100" alt="Imagen 1"></a>
+        <a href="{{ url_for('mercedes') }}"><img src="{{ url_for('static', filename='img/logos/Mercedes.jpg') }}" class="d-block w-100" alt="Imagen 1"></a>
+    </div>
+</section>
+   
+
+
+    <form action="{{ url_for('buscar_presupuesto') }}" method="get">
+        <label for="marca">Buscar por Marca:</label>
+        <select name="marca">
+            <option value="" selected>Todas las marcas</option>
+            {% for marca in marcas %}
+                <option value="{{ marca[0] }}">{{ marca[0] }}</option>
+            {% endfor %}
+        </select>
+    
+        <label for="segmento">Buscar por Segmento:</label>
+        <select name="segmento">
+            <option value="" selected>Todos los segmentos</option>
+            {% for segmento in segmentos %}
+                <option value="{{ segmento[0] }}">{{ segmento[0] }}</option>
+            {% endfor %}
+        </select>
+    
+        <label for="reparacion">Buscar por Reparación:</label>
+        <select name="reparacion">
+            <option value="" selected>Todas las reparaciones</option>
+            {% for reparacion in reparaciones %}
+                <option value="{{ reparacion[0] }}">{{ reparacion[0] }}</option>
+            {% endfor %}
+        </select>
+    
+        <input type="submit" value="Buscar" class"Buscar">
+    </form>
+
+
+    <section class="contenedor_comentarios">
+        <h2>Comentarios</h2>
+
+        {% for comentario in comentarios[:2] %}
+            <div>
+                <p><strong>Nombre:</strong> {{ comentario.nombre }}</p>
+                <p><strong>Vehículo:</strong> {{ comentario.vehiculo }}</p>
+                <p><strong>Mensaje:</strong> {{ comentario.mensaje }}</p>
+                <p><strong>Fecha:</strong> {{ comentario.fecha }}</p>
+            </div>
+            <hr>
+        {% endfor %}
+        <a href="{{ url_for('ver_comentarios') }}"><button class="boton_comentarios">Ver Más...</button><button class="boton_comentarios">Comentar</button></a>
+
+    </section>
+
+
+
+
+    <div class="footer">
+        <div class="footer_center">
+            <div class="logo">
+                <img src="./assets/Your Brand-logos.jpeg" alt="Logo" />
+                <p>
+                    TODOAUTO$
+                </p>
+            </div>
+            <div class="company">
+                <h3>TODOAUTO$</h3>
+                <ul>
+                    <li><a href="">¿QUIENES SOMOS?</a></li>
+                    <li><a href="">Politicas de privacidad</a></li>
+                    <li><a href="">Terminos y condiciones</a></li>
+                </ul>
+            </div>
+            <div class="links">
+                <h3>Enlaces útiles</h3>
+                <ul>
+                    <li><a href="#">Link 1</a></li>
+                    <li><a href="#">Link 2</a></li>
+                    <li><a href="#">Link 3</a></li>
+                </ul>
+            </div>
+            <div class="contact_us">
+                <h3>Contactos:</h3>
+                <a href="#">todoautos@gmail.com</a>
+                <ul>
+                    <li>
+                        <a href="#"><i class="fab fa-facebook" style="color: #1877f2;"></i></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fab fa-instagram" style="color: #e4405f;"></i></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fab fa-tiktok" style="color: #69c9d0;"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-times" style="color: #fff;"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>| © 2024 RT Soluciones| Todos los derechos reservados |</p>
+        </div>
+    </div> 
+
+    <script src="{{ url_for('static', filename='js/buscador.js') }}"></script>
+</body>
+{% endblock %}

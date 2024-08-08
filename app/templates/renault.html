@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block title %}Renaul{% endblock %}
+
+{% block content %}
+<body>
+
+    <h1>Presupuestos de Renault</h1>
+
+    <a href="{{ url_for('index') }}"><button class="boton_volver">Volver al inicio</button></a>
+
+    <section class="tabla">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Marca</th>
+                    <th>Segmento</th>
+                    <th>Reparación</th>
+                    <th>Precio</th>
+                    <th>fecha de Actualización</th>
+                    <th>Observación</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for presupuesto in presupuestos if 'renault' in presupuesto.marca|lower %}
+                    <tr>
+                        
+                        <td>{{ presupuesto.marca }}</td>
+                        <td>{{ presupuesto.segmento }}</td>
+                        <td>{{ presupuesto.reparacion }}</td>
+                        <td>{{ presupuesto.precio }}</td>
+                        <td>{{ presupuesto.fechaActualizacion }}</td>
+                        <td>{{ presupuesto.observacion }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+</body>
+{% endblock %}

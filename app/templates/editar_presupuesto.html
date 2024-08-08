@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block title %}Editar Presupuest{% endblock %}
+
+{% block content %}
+
+<body>
+    <header class="contenedor_hero">
+        <h1 class="titulo">Editar Presupuesto</h1>
+    </header>
+    <section>
+            <form method="POST">
+                <label for="marca">Marca:</label>
+                <input type="text" id="marca" name="marca" value="{{ presupuesto.marca }}" require><br>
+
+                <label for="segmento">Segmento:</label>
+                <input type="segmento" id="segmento" name="segmento" value="{{ presupuesto.segmento }}" require><br>
+    
+                <label for="reparacion">Reparación:</label>
+                <input type="reparacion" id="reparacion" name="reparacion" value="{{ presupuesto.reparacion }}" require><br>
+    
+                <label for="precio">Precio:</label>
+                <input type="precio" id="precio" name="precio" value="{{ presupuesto.precio }}" require><br>
+
+                <label for="fechaActualizacion">Fecha de actualización:</label>
+                <input type="fechaActualizacion" id="fechaActualizacion" name="fechaActualizacion" value="{{ presupuesto.fechaActualizacion }}" require><br>
+
+                <label for="observacion">Observación:</label>
+                <input type="observacion" id="observacion" name="observacion" value="{{ presupuesto.observacion }}" require><br>
+        
+                <button type="submit" class="boton_guardar_cambios">Guardar Cambios</button>
+                <a href="{{ url_for('seleccionar_presupuesto', id=presupuesto.id) }}"><button type="button" class="boton_borrar2_presupuesto">Borrar</button></a>
+                <a href="{{ url_for('presupuestos') }}"><button type="button" class="boton_cancelar_presupuesto">Cancelar</button></a>
+            </form>  
+    </section>
+
+</body>
+    
+   {% endblock %}

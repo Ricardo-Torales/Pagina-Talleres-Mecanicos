@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block title %}Mi APP{% endblock %}
+
+{% block content %}
+<body>
+
+   
+    
+    <h1>CRUD PRESUPUESTADOR</h1>
+    
+
+    <section class="contenedor_form">
+        <h2 class="contacto">Agregar presupuesto</h2>
+    
+        <form action="/aniadir_presupuesto" method="POST" onsubmit="return validarFormulario()">
+            <label for="marca">Marca:</label>
+            <input type="text" id="marca" name="marca" require><br>
+
+            <label for="segmento">Segmento:</label>
+            <input type="text" id="segmento" name="segmento" require><br>
+    
+            <label for="reparacion">Reparación:</label>
+            <input type="reparacion" id="reparacion" name="reparacion" require><br>
+    
+            <label for="precio">Precio:</label>
+            <input type="precio" id="precio" name="precio" require><br>
+
+            <label for="fechaActualizacion">Fecha de actualización:</label>
+            <input type="fechaActualizacion" id="fechaActualizacion" name="fechaActualizacion" require><br>
+
+            <label for="observacion">Observación:</label>
+            <input type="observacion" id="observacion" name="observacion" ><br>
+    
+            <input type="submit" value="AGREGAR">
+        </form>
+        </section>
+</body>
+{% endblock %}

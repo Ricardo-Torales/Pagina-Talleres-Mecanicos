@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block title %}Borrar presupuesto{% endblock %}
+
+{% block content %}
+
+<body>
+    <header class="contenedor_hero">
+        <h1 class="titulo">Borrar presupuesto</h1>
+    </header>
+    <section>
+        <h3 class="confirmacion_borrar">¿Seguro que desea borrar el presupuesto?</h1>
+            <form method="POST">
+                <label for="marca">Marca:</label>
+                <input type="text" id="marca" name="marca" value="{{ presupuesto.marca }}" readonly require><br>
+
+                <label for="segmento">Segmento:</label>
+                <input type="text" id="segmento" name="segmento" value="{{ presupuesto.segmento }}" readonly require><br>
+    
+                <label for="reparacion">Reparación:</label>
+                <input type="reparacion" id="reparacion" name="reparacion" value="{{ presupuesto.reparacion }}" readonly require><br>
+    
+                <label for="precio">Precio:</label>
+                <input type="precio" id="precio" name="precio" value="{{ presupuesto.precio }}" readonly require><br>
+
+                <label for="fechaActualizacion">Fecha de actualización:</label>
+                <input type="fechaActualizacion" id="fechaActualizacion" name="fechaActualizacion" value="{{ presupuesto.fechaActualizacion }}" readonly require><br>
+
+                <label for="observacion">Observación:</label>
+                <input type="observacion" id="observacion" name="observacion" value="{{ presupuesto.observacion }}" readonly require><br>
+        
+                <a href="{{ url_for('borrar_presupuesto', id=presupuesto.id) }}"><button type="button" class="boton_borrar2_presupuesto">Borrar</button></a>
+                <a href="{{ url_for('presupuestos') }}"><button type="button" class="boton_cancelar_presupuesto">Cancelar</button></a>
+            </form>  
+    </section>
+
+</body>
+    
+   {% endblock %}

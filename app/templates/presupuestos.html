@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block title %}Presupuestos{% endblock %}
+
+{% block content %}
+<body>
+
+   
+    
+    <h1>Presupuestos</h1>
+
+    <a href="{{ url_for('agregar_presupuesto') }}"><button class="boton_añadir_presupuesto">Añadir presupuesto</button></a>
+
+    <section class="tabla">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Marca</th>
+                    <th>Segmento</th>
+                    <th>Reparación</th>
+                    <th>Precio</th>
+                    <th>fechaActualización</th>
+                    <th>observación</th>
+                    <th>Editar</th>
+                    <th>Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for presupuesto in presupuestos %}
+                    <tr>
+                        <td>{{ presupuesto.id }}</td>
+                        <td>{{ presupuesto.marca }}</td>
+                        <td>{{ presupuesto.segmento }}</td>
+                        <td>{{ presupuesto.reparacion }}</td>
+                        <td>{{ presupuesto.precio }}</td>
+                        <td>{{ presupuesto.fechaActualizacion }}</td>
+                        <td>{{ presupuesto.observacion }}</td>
+                        <td><a href="editar_presupuesto/{{ presupuesto.id }}"><button type="button" class="boton_editar_presupuesto">Editar</button></a></td>
+                        <td><a href="seleccionar_presupuesto/{{ presupuesto.id }}"><button type="button" class="boton_borrar_presupuesto">Borrar</button></a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </section>
+
+    
+    
+</body>
+{% endblock %}

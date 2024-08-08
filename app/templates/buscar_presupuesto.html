@@ -1,0 +1,86 @@
+{% extends 'layout.html' %}
+
+{% block title %}Resultados de Búsqueda{% endblock %}
+
+{% block content %}
+<div class="contenedor_img_busqueda">
+<img src="{{ url_for('static', filename='img/Busqueda.jpg') }}" class="img_busqueda" alt="Búsqueda TODOAUTO$">
+</div>
+<div class="contenedor_titulo_busqueda">
+  <h1 class="tilulo_busqueda">Resultados de Búsqueda</h1>
+</div>
+
+<form action="{{ url_for('buscar_presupuesto') }}" method="get">
+  {% for resultado in resultados %}
+  <label for="marca">Buscar por Marca:</label>
+  <select name="marca">
+      <option value="" selected>{{ resultado.marca }}</option>
+      {% for marca in marcas %}
+          <option value="{{ marca[0] }}">{{ marca[0] }}</option>
+      {% endfor %}
+  </select>
+
+  <label for="segmento">Buscar por Segmento:</label>
+  <select name="segmento">
+      <option value="" selected>{{ resultado.segmento }}</option>
+      {% for segmento in segmentos %}
+          <option value="{{ segmento[0] }}">{{ segmento[0] }}</option>
+      {% endfor %}
+  </select>
+
+  <label for="reparacion">Buscar por Reparación:</label>
+  <select name="reparacion">
+      <option value="" selected>{{ resultado.reparacion }}</option>
+      {% for reparacion in reparaciones %}
+          <option value="{{ reparacion[0] }}">{{ reparacion[0] }}</option>
+      {% endfor %}
+  </select>
+  {% endfor %}
+  <input type="submit" value="Buscar" class"Buscar">
+</form>
+<div>
+  {% if marca or segmento or reparacion %}
+    <p class="datos_buscados">Búsqueda con Marca: "{{ marca }}"</p>
+    <p class="datos_buscados">Búsqueda con Segmento: "{{ segmento }}"</p>
+    <p class="datos_buscados">Búsqueda con Reparación: "{{ reparacion }}"</p>
+</div>
+<div class="tabla_busqueda">
+    {% if presupuestos %}
+      <table border="6" >
+        <thead>
+          <tr>
+            <th>Marca</th>
+            <th>Segmento</th>
+            <th>Reparación</th>
+            <th>Precio</th>
+            <th>Fecha de Actualización</th>
+            <th>Observación</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for resultado in resultados %}
+            <tr>
+              <td>{{ resultado.marca }}</td>
+              <td>{{ resultado.segmento }}</td>
+              <td>{{ resultado.reparacion }}</td>
+              <td>{{ resultado.precio }}</td>
+              <td>{{ resultado.fechaActualizacion }}</td>
+              <td>{{ resultado.observacion }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>No se encontraron resultados para la búsqueda.</p>
+    {% endif %}
+  {% else %}
+    <p>No se especificaron criterios de búsqueda.</p>
+  {% endif %}
+<div/>
+
+<a id="inicio" href="{{ url_for('index') }}"><input type="submit" value="Volver al Inicio"></a>
+
+
+
+
+{% endblock %}
